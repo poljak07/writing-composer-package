@@ -1,0 +1,11 @@
+{
+    "name": "poljak07/transcriptions",
+    "require-dev": {
+        "phpunit/phpunit": "^12.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Transcriptions\\": "src/"
+        }
+    }
+}
