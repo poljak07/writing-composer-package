@@ -6,7 +6,6 @@
          colors="true"
          executionOrder="depends,defects"
          requireCoverageMetadata="false"
-         beStrictAboutOutputDuringTests="true"
          displayDetailsOnPhpunitDeprecations="true"
          failOnPhpunitDeprecation="true"
          failOnRisky="true"
