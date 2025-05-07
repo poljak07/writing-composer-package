@@ -3,6 +3,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
+use Transcriptions\Line;
 use Transcriptions\Transcription;
 
 class TranscriptionTest extends TestCase
@@ -17,11 +18,15 @@ class TranscriptionTest extends TestCase
         $this->assertStringContainsString('example of a VTT file', $transcription);
     }
 
-    function testit_can_convert_to_an_array_of_lines()
+    function testit_can_convert_to_an_array_of_line_objects()
     {
         $file = __DIR__ . '/stubs/basic-example.vtt';
 
-        $this->assertCount(4, Transcription::load($file)->lines());
+        $lines = Transcription::load($file)->lines();
+
+        $this->assertCount(2, $lines);
+
+        $this->assertContainsOnlyInstancesOf(Line::class, $lines);
     }
 
     function testit_discards_irrelevant_lines_from_the_vtt_file()
@@ -29,6 +34,6 @@ class TranscriptionTest extends TestCase
         $transcription = Transcription::load(__DIR__ . '/stubs/basic-example.vtt');
 
         $this->assertStringNotContainsString('WEBVTT', $transcription);
-        $this->assertCount(4, $transcription->lines());
+        $this->assertCount(2, $transcription->lines());
     }
 }
