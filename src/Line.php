@@ -10,6 +10,17 @@ class Line
 
     }
 
+    public function toAnchorTag()
+    {
+        return "<a href=\"?time={$this->beginningTimestamp()}\">{$this->body}</a>";
+    }
+
+    public function beginningTimestamp()
+    {
+        preg_match('/^\d{2}:(\d{2}:\d{2})\.\d{3}/', $this->timestamp, $matches);
+
+        return $matches[1];
+    }
 
     public static function valid($line)
     {

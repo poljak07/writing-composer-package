@@ -29,6 +29,14 @@ class Transcription
         return $lines;
     }
 
+    public function htmlLines()
+    {
+        return implode("\n", array_map(
+            fn(Line $line) => $line->toAnchorTag(),
+            $this->lines()
+        ));
+    }
+
     protected function discardInvalidLines(array $lines): array
     {
         return array_values(array_filter(
@@ -39,6 +47,6 @@ class Transcription
 
     public function __toString(): string
     {
-        return implode("", $this->lines);
+        return implode("\n", $this->lines);
     }
 }
